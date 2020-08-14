@@ -32,6 +32,25 @@ my $PROGNAME = basename($0);
 ### Subroutines
 ###
 
+# function : error
+# purpose  : print given message to STDERR, then exit with optionally given exit code
+# input    : message, exit code
+
+sub error($;$) {
+	my ($msg, $err) = @_;
+
+	if (!$OPTS{'q'}) {
+		print STDERR "$PROGNAME: $msg\n";
+	}
+	$RETVAL++;
+
+	if ($err) {
+		exit($err);
+		# NOTREACHED
+	}
+}
+
+
 # function : init
 # purpose  : initialize variables, parse command line options;
 # inputs   : none
